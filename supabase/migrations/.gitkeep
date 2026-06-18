@@ -1,0 +1,14 @@
+# Migrations Supabase
+
+As migrations SQL serão adicionadas na **Fase 1**.
+
+## Conteúdo previsto
+
+- `001_initial_schema.sql` — tabelas, enums, índices
+- `002_rls_policies.sql` — Row Level Security
+- `003_scoring_triggers.sql` — funções e triggers de pontuação
+- `004_seed_matches.sql` — jogos iniciais da Copa 2026
+
+## Como aplicar
+
+Veja [docs/SETUP.md](../docs/SETUP.md#6-migrations-do-banco-fase-1).

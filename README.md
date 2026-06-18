@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PutsBoludo 2026
 
-## Getting Started
+Bolão da Copa do Mundo 2026 para grupos de amigos. Cada participante palpita o placar dos jogos; quem acerta exatamente ganha **5 pontos**, quem acerta o vencedor (ou empate) ganha **3 pontos**.
 
-First, run the development server:
+Projeto open source — use, adapte e compartilhe com seu grupo.
+
+## Funcionalidades (roadmap)
+
+| Fase | Status | Conteúdo |
+|------|--------|----------|
+| **0 — Setup** | ✅ Concluída | Next.js, Supabase client, estrutura base, docs |
+| **1 — Fundação** | ✅ Concluída | Schema DB, auth, RLS, seed de jogos, login |
+| **2 — Core** | ✅ Concluída | Palpites, detalhe do jogo, tema visual |
+| **3 — Admin** | ✅ Concluída | Painel admin, tema visual corrigido |
+| **4 — Extras** | ✅ Concluída | PWA, mobile, deploy, cron sync (estrutura) |
+
+## Regras do bolão
+
+- **Placar exato:** 5 pontos
+- **Vencedor ou empate correto:** 3 pontos (não acumula com placar exato)
+- **Errou:** 0 pontos
+- **Prazo:** palpites até o apito inicial; editável quantas vezes quiser antes disso
+- **Placar oficial:** tempo regulamentar (90 min)
+- **Jogo adiado:** palpites reabertos enquanto `status = postponed`
+- **Visibilidade:** palpites de todos sempre visíveis (modo social)
+- **Acesso:** cadastro fechado por código de convite
+
+## Stack
+
+- [Next.js 16](https://nextjs.org/) (App Router, TypeScript)
+- [Supabase](https://supabase.com/) (PostgreSQL, Auth, RLS)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [Zod](https://zod.dev/) — validação
+- [date-fns](https://date-fns.org/) — datas e fusos
+
+## Início rápido
 
 ```bash
+# Clonar e instalar
+git clone <url-do-repo>
+cd PutsBoludo2026
+npm install
+
+# Configurar variáveis de ambiente
+cp .env.example .env.local
+# Edite .env.local com suas credenciais Supabase
+
+# Rodar em desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Guia completo: [docs/SETUP.md](./docs/SETUP.md) · Deploy: [docs/DEPLOY.md](./docs/DEPLOY.md)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Documentação
 
-## Learn More
+- [Setup e deploy local](./docs/SETUP.md)
+- [Deploy na Vercel](./docs/DEPLOY.md)
+- [Sync API externa](./docs/API_SYNC.md)
+- [Arquitetura](./docs/ARCHITECTURE.md)
+- [Decisões do projeto](./docs/DECISIONS.md)
+- [Como contribuir](./docs/CONTRIBUTING.md)
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura do projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+  app/              # Rotas Next.js (App Router)
+  components/       # Componentes React (Fase 2+)
+  lib/
+    supabase/       # Clientes browser, server e middleware
+    scoring.ts      # Lógica de pontuação
+    constants.ts    # Constantes do bolão
+  types/
+    database.ts     # Tipos do Supabase
+supabase/
+  migrations/       # SQL migrations (Fase 1)
+docs/               # Documentação
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Build de produção |
+| `npm run start` | Servidor de produção |
+| `npm run lint` | ESLint |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licença
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT — veja [LICENSE](./LICENSE).
