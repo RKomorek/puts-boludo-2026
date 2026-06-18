@@ -55,8 +55,9 @@ Guia completo: [docs/SETUP.md](./docs/SETUP.md) · Deploy: [docs/DEPLOY.md](./do
 
 ## Documentação
 
-- [Setup e deploy local](./docs/SETUP.md)
+- [Setup local](./docs/SETUP.md)
 - [Deploy na Vercel](./docs/DEPLOY.md)
+- [Checklist e testes](./docs/CHECKLIST.md)
 - [Sync API externa](./docs/API_SYNC.md)
 - [Arquitetura](./docs/ARCHITECTURE.md)
 - [Decisões do projeto](./docs/DECISIONS.md)
