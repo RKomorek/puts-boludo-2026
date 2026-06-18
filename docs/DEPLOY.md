@@ -68,15 +68,17 @@ Envie:
 - Código de convite (`INVITE_CODE`)
 - Regras: placar exato 5 pts, vencedor 3 pts, palpite até o apito
 
-## Cron (sync automático)
+## Cron (sync automático) — desativado no Hobby
 
-O arquivo `vercel.json` agenda `/api/cron/sync-matches` a cada hora.
+A rota `/api/cron/sync-matches` existe no código, mas **não há agendamento** no plano Hobby da Vercel (cron horário exige Pro).
 
-1. Defina `CRON_SECRET` na Vercel (string aleatória)
-2. A Vercel envia `Authorization: Bearer <CRON_SECRET>` automaticamente
-3. Para sync real de placares, veja [API_SYNC.md](./API_SYNC.md)
+Por enquanto use o painel **/admin** para lançar resultados.
 
-> Cron jobs na Vercel exigem plano **Pro** em alguns casos. No Hobby, verifique limites atuais na documentação da Vercel.
+Quando for para Pro ou quiser cron diário:
+
+1. Crie `vercel.json` com schedule `0 12 * * *` (1× por dia) ou faça upgrade
+2. Defina `CRON_SECRET` na Vercel
+3. Veja [API_SYNC.md](./API_SYNC.md)
 
 ## Domínio customizado (opcional)
 
@@ -90,6 +92,6 @@ O arquivo `vercel.json` agenda `/api/cron/sync-matches` a cada hora.
 | Problema | Solução |
 |----------|---------|
 | Login redireciona errado | `NEXT_PUBLIC_APP_URL` e Supabase Site URL devem bater |
-| Build falha | Confira se todas env vars obrigatórias estão na Vercel |
+| Build falha por cron | Remova `crons` do `vercel.json` (Hobby só permite 1×/dia) |
 | Palpite não salva | RLS ok? Jogo ainda `scheduled` e antes do kickoff? |
 | PWA não instala | Acesse via HTTPS; use Chrome/Safari no celular |
