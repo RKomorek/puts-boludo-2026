@@ -29,11 +29,11 @@ Use este arquivo para acompanhar o progresso, testar o bolão e anotar ideias su
 
 **Você precisa confirmar no Supabase:**
 
-- [ ] Migrations aplicadas (todas, incluindo `20260611000005`)
-- [ ] `INVITE_CODE` no `.env` = código no banco (`settings.invite_code`)
-- [ ] Auth → Site URL e Redirect URLs (local **e** produção)
+- [x] Migrations aplicadas (todas, incluindo `20260611000005`)
+- [x] `INVITE_CODE` no `.env` = código no banco (`settings.invite_code`)
+- [x] Auth → Site URL e Redirect URLs (local **e** produção)
 - [ ] Google OAuth habilitado (se for usar)
-- [ ] Você marcado como admin (`is_admin = true`)
+- [x] Você marcado como admin (`is_admin = true`)
 
 ---
 
@@ -77,10 +77,10 @@ Use este arquivo para acompanhar o progresso, testar o bolão e anotar ideias su
 - [x] Projeto na Vercel
 - [x] Branch de produção (`master`)
 - [x] Remoção do cron que bloqueava deploy (Hobby)
-- [ ] Variáveis de ambiente na Vercel conferidas
-- [ ] `NEXT_PUBLIC_APP_URL` = URL real da Vercel
-- [ ] Supabase Auth URLs apontando para produção
-- [ ] Admin configurado no banco de **produção**
+- [x] Variáveis de ambiente na Vercel conferidas
+- [x] `NEXT_PUBLIC_APP_URL` = URL real da Vercel
+- [x] Supabase Auth URLs apontando para produção
+- [x] Admin configurado no banco de **produção**
 - [ ] Testado no celular (navegador + PWA)
 
 **URL de produção:** `_________________________________`
@@ -93,15 +93,15 @@ Use este arquivo para acompanhar o progresso, testar o bolão e anotar ideias su
 
 - [ ] Criar conta com código de convite (e-mail)
 - [ ] Confirmar e-mail (se confirmação estiver ativa)
-- [ ] Login com e-mail/senha
+- [x] Login com e-mail/senha
 - [ ] Login com Google (se configurado)
 - [ ] Tentar cadastro com convite errado → deve bloquear
-- [ ] Logout
+- [x] Logout
 
 ### Jogos e palpites
 
-- [ ] Listar jogos em `/jogos`
-- [ ] Abrir um jogo → `/jogos/[id]`
+- [x] Listar jogos em `/jogos`
+- [x] Abrir um jogo → `/jogos/[id]`
 - [ ] Salvar palpite (placar casa × fora)
 - [ ] Editar palpite antes do horário do jogo
 - [ ] Ver palpites de outros participantes na mesma tela
@@ -119,15 +119,15 @@ Use este arquivo para acompanhar o progresso, testar o bolão e anotar ideias su
 
 ### Admin
 
-- [ ] Acessar `/admin` (como admin)
+- [x] Acessar `/admin` (como admin)
 - [ ] Usuário normal **não** acessa admin
 - [ ] Lançar resultado de um jogo → pontos recalculam
 - [ ] Marcar jogo como adiado → palpites reabrem
 
 ### Mobile / PWA
 
-- [ ] Layout ok no celular
-- [ ] Barra inferior (Jogos / Ranking / Admin)
+- [x] Layout ok no celular
+- [x] Barra inferior (Jogos / Ranking / Admin)
 - [ ] “Adicionar à tela inicial” funciona
 - [ ] App abre em tela cheia (standalone)
 
@@ -135,23 +135,28 @@ Use este arquivo para acompanhar o progresso, testar o bolão e anotar ideias su
 
 ## Ideias — suas
 
-_Anote aqui enquanto testa:_
+*Anote aqui enquanto testa:*
 
-1.
-2.
-3.
+1. Lugar expecifico para ter as regras(settings) e um local para o admin poder mudar
+2. Todos os campos tem que poder ser editados pelo admin
+3. Filtro na tela de jogo
+4. import de xslx do placar de jogos e pontos ja existentes
+5. Ranking do dia e ranking geral
+
 
 ---
 
 ## Ideias — amigos
 
-_Cole feedback do grupo:_
+*Cole feedback do grupo:*
+
 
 | Quem | Ideia | Prioridade (alta/média/baixa) |
-|------|-------|-------------------------------|
+| ---- | ----- | ----------------------------- |
 |      |       |                               |
 |      |       |                               |
 |      |       |                               |
+
 
 ---
 

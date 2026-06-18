@@ -9,6 +9,15 @@ export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
   const next = searchParams.get("next") ?? "/jogos";
+  const oauthError = searchParams.get("error");
+  const oauthDescription = searchParams.get("error_description");
+
+  if (oauthError) {
+    const detail = oauthDescription ? encodeURIComponent(oauthDescription) : "";
+    return NextResponse.redirect(
+      `${origin}/login?error=oauth_failed${detail ? `&detail=${detail}` : ""}`,
+    );
+  }
 
   if (!code) {
     return NextResponse.redirect(`${origin}/login?error=auth_failed`);

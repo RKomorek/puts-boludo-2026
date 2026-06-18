@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { formatAuthError } from "@/lib/auth/errors";
 import { INVITE_COOKIE, validateInviteCode } from "@/lib/auth/invite";
 import { ensureUserProfile } from "@/lib/auth/profile";
 import { createClient } from "@/lib/supabase/server";
@@ -91,7 +92,7 @@ export async function signUpWithEmail(
   });
 
   if (error) {
-    return { error: error.message };
+    return { error: formatAuthError(error.message) };
   }
 
   if (data.user && data.session) {
@@ -147,7 +148,11 @@ export async function startGoogleAuth(
   });
 
   if (error || !data.url) {
-    return { error: "Não foi possível conectar com o Google." };
+    return {
+      error: error
+        ? formatAuthError(error.message)
+        : "Google OAuth não configurado no Supabase. Veja docs/AUTH.md",
+    };
   }
 
   redirect(data.url);

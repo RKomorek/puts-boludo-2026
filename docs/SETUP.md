@@ -48,10 +48,12 @@ Na Fase 1, configure em **Authentication → Providers**:
 
 ### Email / senha
 - Habilite **Email** provider
+- **Desative Confirm email** — essencial para bolão entre amigos (evita limite de e-mails e cadastro instantâneo)
 - Ajuste **Site URL** para `http://localhost:3000` (dev)
 - Adicione redirect: `http://localhost:3000/auth/callback`
-- **Confirmação de e-mail:** se estiver ativa, o perfil é criado pelo trigger no banco (migration `20260611000005`). Rode essa migration após as anteriores.
-- Para grupos pequenos, você pode desativar confirmação em **Authentication → Providers → Email → Confirm email** (cadastro instantâneo).
+- **Não use** “Invite user” no dashboard — amigos cadastram pelo site com `INVITE_CODE`
+
+Guia completo de problemas de auth: [AUTH.md](./AUTH.md)
 
 ### Google OAuth
 1. Crie credenciais em [Google Cloud Console](https://console.cloud.google.com/)
@@ -116,3 +118,5 @@ UPDATE profiles SET is_admin = true WHERE id = '<seu-user-uuid>';
 | Auth redirect loop | Confira Site URL e redirect URLs no Supabase |
 | Palpite não salva | Verifique RLS e se o jogo ainda não começou |
 | Horário errado | Jogos são armazenados em UTC; exibição em `America/Sao_Paulo` |
+| `email rate limit exceeded` | Desative Confirm email; não use Invite no Supabase — veja [AUTH.md](./AUTH.md) |
+| Google não funciona | Configure Google provider + Google Cloud — veja [AUTH.md](./AUTH.md) |

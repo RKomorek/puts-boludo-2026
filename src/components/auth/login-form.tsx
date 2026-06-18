@@ -14,7 +14,10 @@ const initialState: AuthActionState = {};
 
 const errorMessages: Record<string, string> = {
   auth_failed: "Não foi possível concluir o login. Tente novamente.",
-  invite_required: "Conta nova exige código de convite válido.",
+  oauth_failed:
+    "Erro no login com Google. Confira se o Google está configurado no Supabase (docs/AUTH.md).",
+  invite_required:
+    "Conta nova exige código de convite. Use a aba Criar conta, preencha o convite e tente o Google de novo.",
   profile_failed: "Erro ao criar perfil. Tente novamente.",
 };
 
@@ -62,11 +65,16 @@ export function LoginForm() {
   );
 
   const queryError = searchParams.get("error");
+  const queryDetail = searchParams.get("detail");
   const state = mode === "signin" ? signInState : signUpState;
   const error =
     state.error ??
     googleState.error ??
-    (queryError ? errorMessages[queryError] : undefined);
+    (queryError
+      ? queryDetail
+        ? `${errorMessages[queryError] ?? queryError} (${decodeURIComponent(queryDetail)})`
+        : (errorMessages[queryError] ?? queryError)
+      : undefined);
   const success = state.success ?? googleState.success;
   const pending = signInPending || signUpPending || googlePending;
 
